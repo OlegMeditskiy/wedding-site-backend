@@ -13,8 +13,6 @@ INSERT INTO invitation_text(id,invitation_text,final_date) VALUES ('1','Тext of
 
 INSERT INTO place(id,place) VALUES ('1','Place') ON CONFLICT (id) DO NOTHING;
 
-INSERT INTO program(id,program) VALUES ('1','Program text') ON CONFLICT (id) DO NOTHING;
-
 INSERT INTO wedding_date(id,wedding_date) VALUES ('1','10-12-2006') ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO program(id) VALUES ('1') ON CONFLICT (id) DO NOTHING;
