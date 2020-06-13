@@ -69,22 +69,25 @@ public class AuthImpl implements AuthService {
 
     @Override
     public ResponseEntity<?> registerUser(SignUpRequest signUpRequest) {
+        System.out.println("register user");
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(new ApiResponse(false, "Email Address already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
         Admin user = new Admin(signUpRequest.getUsername(), signUpRequest.getPassword());
-
+        System.out.println("set password");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Set<Role> roles = new LinkedHashSet<>();
+        System.out.println("set Role");
         Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new AppException("User Role not set."));
         roles.add(userRole);
+        System.out.println("set Role Admin");
         userRole = roleRepository.findByName(RoleName.ROLE_ADMIN)
                 .orElseThrow(() -> new AppException("User Role not set."));
         roles.add(userRole);
         user.setRoles(roles);
-
+        System.out.println("save user");
 
         User result = userRepository.save(user);
 
