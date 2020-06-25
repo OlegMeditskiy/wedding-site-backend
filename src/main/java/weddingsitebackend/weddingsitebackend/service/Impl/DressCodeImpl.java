@@ -45,7 +45,13 @@ public class DressCodeImpl implements DressCodeService {
     public ResponseEntity<?> photoUploadDressMale(MultipartFile file) throws IOException {
         DressCode dressCode = dressCodeRepo.getOne((long)1);
         if (dressCode.getDressMale()!=null&&dressCode.getDressMale().length()>0){
-            storageService.delete(dressCode.getDressMale());
+            try{
+                storageService.delete(dressCode.getDressMale());
+            }
+            catch (Exception exception){
+                System.out.println("File not found, nothing to delete");
+            }
+
         }
         UUID uniqueKey = UUID.randomUUID();
         String photoName=storageService.saveAsString(file,uniqueKey.toString());
@@ -56,7 +62,14 @@ public class DressCodeImpl implements DressCodeService {
     @Override
     public ResponseEntity<?> photoUploadDressFemale(MultipartFile file) throws IOException {
         DressCode dressCode = dressCodeRepo.getOne((long)1);
-        if (dressCode.getDressFemale()!=null&&dressCode.getDressFemale().length()>0){ storageService.delete(dressCode.getDressFemale());}
+        if (dressCode.getDressFemale()!=null&&dressCode.getDressFemale().length()>0){
+            try{
+                storageService.delete(dressCode.getDressFemale());
+            }
+            catch (Exception exception){
+                System.out.println("File not found, nothing to delete");
+            }
+        }
         UUID uniqueKey = UUID.randomUUID();
         String photoName=storageService.saveAsString(file,uniqueKey.toString());
         dressCode.setDressFemale(photoName);
