@@ -10,6 +10,7 @@ import weddingsitebackend.weddingsitebackend.payload.responses.AboutUsResponse;
 import weddingsitebackend.weddingsitebackend.repository.siteObjects.AboutUsRepo;
 import weddingsitebackend.weddingsitebackend.service.AboutUsService;
 import weddingsitebackend.weddingsitebackend.service.StorageService;
+import weddingsitebackend.weddingsitebackend.storage.StorageFileNotFoundException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,9 +50,16 @@ public class AboutUsImpl implements AboutUsService {
     }
 
     @Override
-    public ResponseEntity<?> photoUpload(MultipartFile file, AboutUsRequest aboutUsRequest) throws IOException {
+    public ResponseEntity<?> photoUpload(MultipartFile file, AboutUsRequest aboutUsRequest){
         AboutUs aboutUs = aboutUsRepo.getOne(aboutUsRequest.getId());
-        if (aboutUs.getPhotoName()!=null){ storageService.delete(aboutUs.getPhotoName());}
+        if (aboutUs.getPhotoName()!=null){
+            try{
+            storageService.delete(aboutUs.getPhotoName());
+            }
+            catch (StorageFileNotFoundException | IOException storageFileNotFoundException){
+                System.out.println(storageFileNotFoundException);
+            }
+        }
         UUID uniqueKey = UUID.randomUUID();
         String photoName=storageService.saveAsString(file,uniqueKey.toString());
         aboutUs.setPhotoName(photoName);
