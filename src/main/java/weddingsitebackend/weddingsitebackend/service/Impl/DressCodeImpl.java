@@ -10,6 +10,7 @@ import weddingsitebackend.weddingsitebackend.payload.responses.DressCodeResponse
 import weddingsitebackend.weddingsitebackend.repository.siteObjects.DressCodeRepo;
 import weddingsitebackend.weddingsitebackend.service.DressCodeService;
 import weddingsitebackend.weddingsitebackend.service.StorageService;
+import weddingsitebackend.weddingsitebackend.storage.StorageFileNotFoundException;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -48,8 +49,8 @@ public class DressCodeImpl implements DressCodeService {
             try{
                 storageService.delete(dressCode.getDressMale());
             }
-            catch (Exception exception){
-                System.out.println("File not found, nothing to delete");
+            catch (StorageFileNotFoundException | IOException storageFileNotFoundException){
+                System.out.println(storageFileNotFoundException);
             }
 
         }
@@ -60,14 +61,14 @@ public class DressCodeImpl implements DressCodeService {
         return ResponseEntity.ok().body(new ApiResponse(true, "Photo was updated"));
     }
     @Override
-    public ResponseEntity<?> photoUploadDressFemale(MultipartFile file) throws IOException {
+    public ResponseEntity<?> photoUploadDressFemale(MultipartFile file){
         DressCode dressCode = dressCodeRepo.getOne((long)1);
         if (dressCode.getDressFemale()!=null&&dressCode.getDressFemale().length()>0){
             try{
                 storageService.delete(dressCode.getDressFemale());
             }
-            catch (Exception exception){
-                System.out.println("File not found, nothing to delete");
+            catch (StorageFileNotFoundException | IOException storageFileNotFoundException){
+                System.out.println(storageFileNotFoundException);
             }
         }
         UUID uniqueKey = UUID.randomUUID();
