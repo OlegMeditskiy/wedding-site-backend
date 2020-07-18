@@ -15,16 +15,13 @@ public class PersonalInvitation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String names;
+    private String firstName;
 
-    private String invitationLink;
+    private String lastName;
 
-    private InvitationStatus status = InvitationStatus.NOT_ANSWERED;
+    private InvitationStatus status;
 
     private boolean needTransfer = false;
-
-    @Type(type = "uuid-char")
-    private UUID uniqueKey;
-
+    private String whoComingWithMe;
 
 }

@@ -8,18 +8,12 @@ import weddingsitebackend.weddingsitebackend.payload.responses.PersonalInvitatio
 import java.util.List;
 
 public interface PersonalInvitationService {
-    ResponseEntity<?> update(PersonalInvitationRequest personalInvitationRequest);
 
     ResponseEntity<?> create(PersonalInvitationRequest personalInvitationRequest);
-
-    List<ApiResponse> getApiResponses(String response1, String response2);
 
     ResponseEntity<?> delete(PersonalInvitationRequest personalInvitationRequest);
 
     List<PersonalInvitationResponse> get();
 
-    PersonalInvitationResponse getPersonal(String key);
-    ResponseEntity<?> accept(PersonalInvitationRequest personalInvitationRequest);
-    ResponseEntity<?> decline(PersonalInvitationRequest personalInvitationRequest);
 
 }

@@ -10,12 +10,14 @@ public class PersonalInvitationResponse {
 
     private Long id;
 
-    private String names;
+    private String firstName;
 
-    private String invitationLink;
+    private String lastName;
 
     private InvitationStatus status;
 
     private boolean needTransfer;
+    private String whoComingWithMe;
+    private String email;
 
 }
