@@ -94,7 +94,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/api/admin/get/**")
                 .permitAll()
-                .antMatchers("/api/invitation/**")
+                .antMatchers("/api/create/invitation")
                 .permitAll()
                 .anyRequest()
                 .authenticated();
