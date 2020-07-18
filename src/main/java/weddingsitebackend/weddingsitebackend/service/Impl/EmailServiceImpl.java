@@ -29,8 +29,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendMessageWithAttachment(
-            String to, String subject, String text, String pathToAttachment) throws MessagingException {
+    public void sendMessageHTMLtags(String to, String subject, String text) throws MessagingException {
 
         MimeMessage message = emailSender.createMimeMessage();
 
@@ -39,10 +38,6 @@ public class EmailServiceImpl implements EmailService {
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText(text);
-
-        FileSystemResource file
-                = new FileSystemResource(new File(pathToAttachment));
-        helper.addAttachment("Invoice", file);
 
         emailSender.send(message);
     }

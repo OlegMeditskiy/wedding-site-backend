@@ -11,6 +11,7 @@ import weddingsitebackend.weddingsitebackend.repository.siteObjects.PersonalInvi
 import weddingsitebackend.weddingsitebackend.service.EmailService;
 import weddingsitebackend.weddingsitebackend.service.PersonalInvitationService;
 
+import javax.mail.MessagingException;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ public class PersonalInvitationImpl implements PersonalInvitationService {
     }
 
     @Override
-    public ResponseEntity<?> create(PersonalInvitationRequest personalInvitationRequest) {
+    public ResponseEntity<?> create(PersonalInvitationRequest personalInvitationRequest) throws MessagingException {
         PersonalInvitation personalInvitation = new PersonalInvitation();
         personalInvitation.setFirstName(personalInvitationRequest.getFirstName());
         personalInvitation.setLastName(personalInvitationRequest.getLastName());
@@ -39,11 +40,11 @@ public class PersonalInvitationImpl implements PersonalInvitationService {
             String to = personalInvitationRequest.getEmail();
             String subject = "Приглашение на свадьбу";
             String text = "Вы приняли наше приглашение на свадьбу!" +
-                    "\nЖдем вас 29 августа в 15:00 в загородном клубе Артиленд по адресу 'Московская область, Балашиха, Новское шоссе, 10.'" +
+                    "\nЖдем вас <b>29 августа в 15:00<b> в загородном клубе Артиленд по адресу 'Московская область, Балашиха, Новское шоссе, 10.'" +
                     "\nДополнительная информация по свадьбе находится на нашем свадебном сайте http://daria-alexander-wedding.herokuapp.com/" +
                     "\n\nC уважением," +
                     "\nДарья и Александр";
-            emailService.sendSimpleMessage(to, subject, text);
+            emailService.sendMessageHTMLtags(to, subject, text);
         }
         else {
             personalInvitation.setStatus(InvitationStatus.DECLINED);
