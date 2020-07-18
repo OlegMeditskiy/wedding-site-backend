@@ -39,8 +39,8 @@ public class PersonalInvitationImpl implements PersonalInvitationService {
             String to = personalInvitationRequest.getEmail();
             String subject = "Приглашение на свадьбу";
             String text = "Вы приняли наше приглашение на свадьбу!" +
-                    "\nЖдем вас <b>29 августа в 15:00</b> в загородном клубе Артиленд по адресу 'Московская область, Балашиха, Новское шоссе, 10.'" +
-                    "\nДополнительная информация по свадьбе находится на нашем свадебном <a href='http://daria-alexander-wedding.herokuapp.com/'>сайте</a>" +
+                    "\nЖдем вас 29 августа в 15:00 в загородном клубе Артиленд по адресу 'Московская область, Балашиха, Новское шоссе, 10.'" +
+                    "\nДополнительная информация по свадьбе находится на нашем свадебном сайте http://daria-alexander-wedding.herokuapp.com/" +
                     "\n\nC уважением," +
                     "\nДарья и Александр";
             emailService.sendSimpleMessage(to, subject, text);
