@@ -12,7 +12,6 @@ import weddingsitebackend.weddingsitebackend.service.EmailService;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
 
 @Component
 public class EmailServiceImpl implements EmailService {
@@ -30,13 +29,13 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public void sendMessageHTMLtags(String to, String subject, String text) throws MessagingException, UnsupportedEncodingException {
+    public void sendMessageHTMLtags(String to, String subject, String text) throws MessagingException {
 
         MimeMessage message = emailSender.createMimeMessage();
         message.setSubject(subject);
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setTo(to);
-        helper.setFrom("daria.alexander.wedding@gmail.com","Свадьба Дарьи и Александра");
+
         helper.setSubject(subject);
         helper.setText(text,true);
 
