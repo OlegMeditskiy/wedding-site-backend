@@ -35,7 +35,6 @@ public class EmailServiceImpl implements EmailService {
         message.setSubject(subject);
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setTo(to);
-        helper.setFrom("Свадьба Дарьи и Александра");
         helper.setSubject(subject);
         helper.setText(text,true);
 
