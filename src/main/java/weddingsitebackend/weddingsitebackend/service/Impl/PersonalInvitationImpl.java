@@ -43,7 +43,7 @@ public class PersonalInvitationImpl implements PersonalInvitationService {
                     "<p>Вот детали события:</p>" +
                     "<p>Свадьба" +
                     "<br><u>29 августа 2020 г., 15:00</u>" +
-                    "<br>Загородный клуб 'Артиленд', Московская область, Балашиха, Новское шоссе, 10.<p/>" +
+                    "<br>Загородный клуб 'Artiland', Московская область, Балашиха, Новское шоссе, 10.<p/>" +
                     "<p><a href='http://daria-alexander-wedding.herokuapp.com/'>Узнать больше о событии</a></p>" +
                     "<a target=\"_blank\" href=\"https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=MTBoaXNlOTBwcTIzYWVkb3ZzdDNjbmY1ZzYgZGFyaWEuYWxleGFuZGVyLndlZGRpbmdAbQ&amp;tmsrc=daria.alexander.wedding%40gmail.com\">Добавить в мой календарь</a>" +
                     "<p>C уважением," +
