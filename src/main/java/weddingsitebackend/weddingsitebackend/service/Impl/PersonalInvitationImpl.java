@@ -38,11 +38,15 @@ public class PersonalInvitationImpl implements PersonalInvitationService {
             personalInvitation.setComing(true);
             String to = personalInvitationRequest.getEmail();
             String subject = "Приглашение на свадьбу";
-            String text = "<h1>Вы приняли наше приглашение на свадьбу!</h1>" +
-                    "<p>Ждем вас <b>29 августа в 15:00</b> в загородном клубе Артиленд по адресу 'Московская область, Балашиха, Новское шоссе, 10.'<p/>" +
-                    "<p>Дополнительная информация о свадьбе находится на нашем <a href='http://daria-alexander-wedding.herokuapp.com/'>свадебном сайте</a></p>" +
-                    "<br><br>C уважением,<br>" +
-                    "Дарья и Александр";
+            String text = "<h1>Мы с нетерпением ждем встречи с Вами!</h1>" +
+                    "<p>Вот детали события:</p>" +
+                    "<p>Свадьба" +
+                    "<br><u>29 августа 2020 г., 15:00</u>" +
+                    "<br>Загородный клуб 'Артиленд', Московская область, Балашиха, Новское шоссе, 10.<p/>" +
+                    "<p><a href='http://daria-alexander-wedding.herokuapp.com/'>Узнать больше о событии</a></p>" +
+                    "<a target=\"_blank\" href=\"https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=MTBoaXNlOTBwcTIzYWVkb3ZzdDNjbmY1ZzYgZGFyaWEuYWxleGFuZGVyLndlZGRpbmdAbQ&amp;tmsrc=daria.alexander.wedding%40gmail.com\"><img border=\"0\" src=\"https://www.google.com/calendar/images/ext/gc_button1_en.gif\"></a>" +
+                    "<p>C уважением," +
+                    "<br>Дарья и Александр</p>";
             emailService.sendMessageHTMLtags(to, subject, text);
         }
         else {
