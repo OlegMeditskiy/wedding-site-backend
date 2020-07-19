@@ -2,7 +2,6 @@ package weddingsitebackend.weddingsitebackend.service.Impl;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import weddingsitebackend.weddingsitebackend.models.siteObjects.InvitationStatus;
 import weddingsitebackend.weddingsitebackend.models.siteObjects.PersonalInvitation;
 import weddingsitebackend.weddingsitebackend.payload.common.ApiResponse;
 import weddingsitebackend.weddingsitebackend.payload.requests.PersonalInvitationRequest;
@@ -36,7 +35,7 @@ public class PersonalInvitationImpl implements PersonalInvitationService {
         personalInvitation.setWhoComingWithMe(personalInvitationRequest.getWhoComingWithMe());
 
         if (personalInvitationRequest.isComing()){
-            personalInvitation.setStatus(InvitationStatus.ACCEPTED);
+            personalInvitation.setComing(true);
             String to = personalInvitationRequest.getEmail();
             String subject = "Приглашение на свадьбу";
             String text = "<h1>Вы приняли наше приглашение на свадьбу!</h1>" +
@@ -47,7 +46,7 @@ public class PersonalInvitationImpl implements PersonalInvitationService {
             emailService.sendMessageHTMLtags(to, subject, text);
         }
         else {
-            personalInvitation.setStatus(InvitationStatus.DECLINED);
+            personalInvitation.setComing(false);
         }
         personalInvitationRepo.save(personalInvitation);
         return ResponseEntity.ok().body(new ApiResponse(true, "Персональное приглашение для " + personalInvitation.getFirstName() +" "+personalInvitation.getLastName()+ " было создано"));
@@ -68,7 +67,7 @@ public class PersonalInvitationImpl implements PersonalInvitationService {
         for (PersonalInvitation personalInvitation : personalInvitationList) {
             PersonalInvitationResponse personalInvitationResponse = new PersonalInvitationResponse();
             personalInvitationResponse.setId(personalInvitation.getId());
-            personalInvitationResponse.setStatus(personalInvitation.getStatus());
+            personalInvitationResponse.setComing(personalInvitation.isComing());
             personalInvitationResponse.setNeedTransfer(personalInvitation.isNeedTransfer());
             personalInvitationResponse.setFirstName(personalInvitation.getFirstName());
             personalInvitationResponse.setLastName(personalInvitation.getLastName());

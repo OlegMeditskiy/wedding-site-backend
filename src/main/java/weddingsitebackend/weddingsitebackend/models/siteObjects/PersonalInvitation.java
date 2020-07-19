@@ -19,7 +19,7 @@ public class PersonalInvitation {
 
     private String lastName;
 
-    private InvitationStatus status;
+    private boolean coming;
 
     private boolean needTransfer = false;
     private String whoComingWithMe;

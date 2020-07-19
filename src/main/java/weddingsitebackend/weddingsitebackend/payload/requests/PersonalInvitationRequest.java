@@ -1,7 +1,6 @@
 package weddingsitebackend.weddingsitebackend.payload.requests;
 
 import lombok.Getter;
-import weddingsitebackend.weddingsitebackend.models.siteObjects.InvitationStatus;
 
 @Getter
 public class PersonalInvitationRequest {
